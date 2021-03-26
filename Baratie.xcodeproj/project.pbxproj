@@ -16,6 +16,8 @@
 		2471D829260D72A100FE2E36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2471D827260D72A100FE2E36 /* LaunchScreen.storyboard */; };
 		2471D834260D72A100FE2E36 /* BaratieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D833260D72A100FE2E36 /* BaratieTests.swift */; };
 		2471D83F260D72A100FE2E36 /* BaratieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D83E260D72A100FE2E36 /* BaratieUITests.swift */; };
+		2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D865260D7D4100FE2E36 /* LoginViewController.swift */; };
+		2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		2471D83A260D72A100FE2E36 /* BaratieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaratieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2471D83E260D72A100FE2E36 /* BaratieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaratieUITests.swift; sourceTree = "<group>"; };
 		2471D840260D72A100FE2E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2471D865260D7D4100FE2E36 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +105,11 @@
 		2471D818260D729E00FE2E36 /* Baratie */ = {
 			isa = PBXGroup;
 			children = (
+				2471D853260D7BF700FE2E36 /* Models */,
 				2471D819260D729E00FE2E36 /* AppDelegate.swift */,
 				2471D81B260D729E00FE2E36 /* SceneDelegate.swift */,
-				2471D81D260D729E00FE2E36 /* ViewController.swift */,
-				2471D81F260D729E00FE2E36 /* Main.storyboard */,
+				2471D84F260D7BF100FE2E36 /* Views */,
+				2471D854260D7BFE00FE2E36 /* Controllers */,
 				2471D825260D72A100FE2E36 /* Assets.xcassets */,
 				2471D827260D72A100FE2E36 /* LaunchScreen.storyboard */,
 				2471D82A260D72A100FE2E36 /* Info.plist */,
@@ -129,6 +134,31 @@
 				2471D840260D72A100FE2E36 /* Info.plist */,
 			);
 			path = BaratieUITests;
+			sourceTree = "<group>";
+		};
+		2471D84F260D7BF100FE2E36 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2471D81F260D729E00FE2E36 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2471D853260D7BF700FE2E36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2471D854260D7BFE00FE2E36 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2471D81D260D729E00FE2E36 /* ViewController.swift */,
+				2471D865260D7D4100FE2E36 /* LoginViewController.swift */,
+				2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +294,8 @@
 				2471D824260D729E00FE2E36 /* Baratie.xcdatamodeld in Sources */,
 				2471D81E260D729E00FE2E36 /* ViewController.swift in Sources */,
 				2471D81A260D729E00FE2E36 /* AppDelegate.swift in Sources */,
+				2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */,
+				2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */,
 				2471D81C260D729E00FE2E36 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
