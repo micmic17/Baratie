@@ -36,7 +36,6 @@ class ViewController: UIViewController {
     
 }
 
-
 extension UIViewController {
     func customButton(_ button: UIButton) {
         button.tintColor = UIColor(named: "text_color")

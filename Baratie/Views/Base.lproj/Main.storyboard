@@ -134,11 +134,81 @@
                                 <rect key="frame" x="20" y="160" width="374" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3P-F2-7fJ">
+                                <rect key="frame" x="57" y="747" width="300" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="loginPressed:" destination="2lf-of-118" eventType="touchUpInside" id="xvY-wh-u6e"/>
+                                    <action selector="registerButtonPressed:" destination="rW0-Lr-lVT" eventType="touchUpInside" id="zRU-mp-x8f"/>
+                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xzr-Cl-lut"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-6s-Kng">
+                                <rect key="frame" x="20" y="419" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="loginTextFieldChanges:" destination="2lf-of-118" eventType="editingDidEnd" id="913-Bj-ANf"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UU9-yy-Blv">
+                                <rect key="frame" x="20" y="471" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="loginTextFieldChanges:" destination="2lf-of-118" eventType="editingDidEnd" id="TCL-dO-GKA"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-8B-SYL">
+                                <rect key="frame" x="19" y="524" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="loginTextFieldChanges:" destination="2lf-of-118" eventType="editingDidEnd" id="2n8-80-eMc"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2wH-tW-QAj">
+                                <rect key="frame" x="20" y="633" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rlb-5Y-FbS">
+                                <rect key="frame" x="20" y="689" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IzY-72-93b">
+                                <rect key="frame" x="20" y="579" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="formTextFieldChanged:" destination="rW0-Lr-lVT" eventType="editingDidEnd" id="Muj-YK-nUu"/>
+                                    <action selector="loginTextFieldChanges:" destination="2lf-of-118" eventType="editingDidEnd" id="N4J-DM-oZz"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j9t-d5-Yx9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="McE-ox-1sm"/>
+                    <connections>
+                        <outlet property="addressTextField" destination="IzY-72-93b" id="YaI-kQ-qAV"/>
+                        <outlet property="confirmPasswordTextField" destination="Rlb-5Y-FbS" id="AhL-9g-IPZ"/>
+                        <outlet property="emailTextField" destination="thJ-8B-SYL" id="YCh-PS-SLg"/>
+                        <outlet property="firstNameTextField" destination="KNl-6s-Kng" id="Fz8-1h-cOU"/>
+                        <outlet property="imageView" destination="WqE-ud-8AP" id="8Zl-6P-o2x"/>
+                        <outlet property="lastNameTextField" destination="UU9-yy-Blv" id="E3Z-xi-pNm"/>
+                        <outlet property="passwordTextField" destination="2wH-tW-QAj" id="h4P-FL-zP5"/>
+                        <outlet property="registerButton" destination="W3P-F2-7fJ" id="bia-e4-Uea"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBo-cS-4cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
