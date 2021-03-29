@@ -1,0 +1,6 @@
+framework module Pods_Baratie {
+  umbrella header "Pods-Baratie-umbrella.h"
+
+  export *
+  module * { export * }
+}
