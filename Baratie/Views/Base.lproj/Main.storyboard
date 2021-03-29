@@ -38,7 +38,6 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JCH-IK-wsl"/>
                                     <segue destination="rW0-Lr-lVT" kind="show" identifier="RootToRegister" id="90e-U9-4iZ"/>
                                 </connections>
                             </button>
@@ -63,6 +62,7 @@
                         <outlet property="imageView" destination="Pb0-4x-zLU" id="02n-kg-wRJ"/>
                         <outlet property="loginButton" destination="Ky5-Yf-GeF" id="yNr-oD-va8"/>
                         <outlet property="registerButton" destination="szY-ZZ-YMw" id="uuf-yl-uXC"/>
+                        <segue destination="6fT-Q8-Zad" kind="show" identifier="RootToHome" id="fWl-5V-NCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,7 +103,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginPressed:" destination="2lf-of-118" eventType="touchUpInside" id="9PJ-2a-GbJ"/>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcy-lz-uuI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -121,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajp-8D-3B7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376.81159420289856" y="95.758928571428569"/>
+            <point key="canvasLocation" x="377" y="208"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="3zV-Id-klJ">
@@ -133,11 +132,20 @@
                         <viewLayoutGuide key="safeArea" id="f7r-Hr-4P9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ij0-mt-uFg"/>
+                    <navigationItem key="navigationItem" id="Ij0-mt-uFg">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nQd-zN-QFn">
+                            <connections>
+                                <action selector="logoutPressed:" destination="6fT-Q8-Zad" id="iUm-tO-n8s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="nQd-zN-QFn" id="Bye-dB-Kgo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-jP-bcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="-184"/>
+            <point key="canvasLocation" x="1319" y="-289"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="073-0C-qkd">
@@ -159,7 +167,6 @@
                                 <connections>
                                     <action selector="loginPressed:" destination="2lf-of-118" eventType="touchUpInside" id="xvY-wh-u6e"/>
                                     <action selector="registerButtonPressed:" destination="rW0-Lr-lVT" eventType="touchUpInside" id="zRU-mp-x8f"/>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xzr-Cl-lut"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-6s-Kng">
@@ -230,11 +237,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBo-cS-4cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378" y="-585"/>
+            <point key="canvasLocation" x="377" y="-727"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DJQ-rq-98A"/>
+        <segue reference="fWl-5V-NCe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

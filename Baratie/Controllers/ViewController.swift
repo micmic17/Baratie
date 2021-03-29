@@ -6,21 +6,23 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        customView(imageView, "")
-        customButton(loginButton)
-        customButton(registerButton)
-    }
-
-    @IBAction func rootViewButtonsPressed(_ sender: UIButton) {
-//        if ()
+        if !isUserLoggedIn() {
+            customView(imageView, "")
+            customButton(loginButton)
+            customButton(registerButton)
+        } else {
+            performSegue(withIdentifier: "RootToHome", sender: self)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,8 +34,6 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
-    
-    
 }
 
 extension UIViewController {
@@ -66,6 +66,10 @@ extension UIViewController {
         let date = Date()
         
         return dateFormatter.string(from: date)
+    }
+    
+    func isUserLoggedIn() -> Bool {
+        return Auth.auth().currentUser != nil
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		244EFF0E26119D190035EBF1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFF0D26119D190035EBF1 /* HomeViewController.swift */; };
 		244EFF2B2611A6B40035EBF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 244EFF2A2611A6B40035EBF1 /* GoogleService-Info.plist */; };
+		244EFF5E2611D7780035EBF1 /* BadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFF5D2611D7780035EBF1 /* BadgedBarButtonItem.swift */; };
 		2471D81A260D729E00FE2E36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D819260D729E00FE2E36 /* AppDelegate.swift */; };
 		2471D81C260D729E00FE2E36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D81B260D729E00FE2E36 /* SceneDelegate.swift */; };
 		2471D81E260D729E00FE2E36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D81D260D729E00FE2E36 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		244EFF0D26119D190035EBF1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		244EFF2A2611A6B40035EBF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		244EFF5D2611D7780035EBF1 /* BadgedBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedBarButtonItem.swift; sourceTree = "<group>"; };
 		2471D816260D729E00FE2E36 /* Baratie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baratie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2471D819260D729E00FE2E36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2471D81B260D729E00FE2E36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				2471D81F260D729E00FE2E36 /* Main.storyboard */,
+				244EFF5D2611D7780035EBF1 /* BadgedBarButtonItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				2471D824260D729E00FE2E36 /* Baratie.xcdatamodeld in Sources */,
 				2471D81E260D729E00FE2E36 /* ViewController.swift in Sources */,
 				2471D81A260D729E00FE2E36 /* AppDelegate.swift in Sources */,
+				244EFF5E2611D7780035EBF1 /* BadgedBarButtonItem.swift in Sources */,
 				2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */,
 				2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */,
 				244EFF0E26119D190035EBF1 /* HomeViewController.swift in Sources */,
