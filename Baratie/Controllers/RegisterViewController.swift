@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import CoreData
+
 
 class RegisterViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
@@ -16,6 +19,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var customerData = [Customers]()
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +38,41 @@ class RegisterViewController: UIViewController {
 
     @IBAction func formTextFieldChanged(_ sender: Any) {
     }
+
     @IBAction func registerButtonPressed(_ sender: Any) {
+        if let email = emailTextField.text,
+           let password = passwordTextField.text,
+           let firstname = firstNameTextField.text,
+           let lastname = lastNameTextField.text,
+           let cpassword = confirmPasswordTextField.text {
+            
+            let customer = Customers(context: self.context)
+            customer.firstname = firstname
+            customer.lastname = lastname
+            customer.password = password
+            customer.email = email
+            customer.address = addressTextField.text
+            customer.created_at = getCurrentDateTime()
+            customer.updated_at = getCurrentDateTime()
+            
+            self.customerData.append(customer)
+            self.saveCustomerData()
+            
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.performSegue(withIdentifier: "RegisterToHome", sender: self)
+                }
+            }
+        }
+    }
+    
+    func saveCustomerData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving customer data with \(error)")
+        }
     }
 }

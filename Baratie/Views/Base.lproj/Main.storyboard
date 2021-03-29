@@ -116,11 +116,28 @@
                         <outlet property="imageView" destination="nCP-b1-bMQ" id="fqA-fZ-Z4h"/>
                         <outlet property="loginButton" destination="Ye0-eZ-Rz4" id="edi-vz-hmT"/>
                         <outlet property="passwordTextField" destination="SMz-rF-936" id="MuX-rJ-GvC"/>
+                        <segue destination="6fT-Q8-Zad" kind="show" identifier="LoginToHome" id="DJQ-rq-98A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajp-8D-3B7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="376.81159420289856" y="95.758928571428569"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="3zV-Id-klJ">
+            <objects>
+                <viewController id="6fT-Q8-Zad" customClass="HomeViewController" customModule="Baratie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2PI-W3-o36">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="f7r-Hr-4P9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ij0-mt-uFg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-jP-bcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1342" y="-184"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="073-0C-qkd">
@@ -208,6 +225,7 @@
                         <outlet property="lastNameTextField" destination="UU9-yy-Blv" id="E3Z-xi-pNm"/>
                         <outlet property="passwordTextField" destination="2wH-tW-QAj" id="h4P-FL-zP5"/>
                         <outlet property="registerButton" destination="W3P-F2-7fJ" id="bia-e4-Uea"/>
+                        <segue destination="6fT-Q8-Zad" kind="show" identifier="RegisterToHome" id="CbW-7P-RT9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBo-cS-4cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -215,6 +233,9 @@
             <point key="canvasLocation" x="378" y="-585"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DJQ-rq-98A"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

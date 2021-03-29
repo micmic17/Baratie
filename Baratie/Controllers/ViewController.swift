@@ -59,6 +59,14 @@ extension UIViewController {
                                                                   attributes: [
                                                                     NSAttributedString.Key.foregroundColor: UIColor(named: "text_color") ?? .black])
     }
+    
+    func getCurrentDateTime() -> String {
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = Date()
+        
+        return dateFormatter.string(from: date)
+    }
 }
 
 extension UITextField {
