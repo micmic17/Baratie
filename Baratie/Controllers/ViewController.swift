@@ -82,11 +82,11 @@ extension UITextField {
         self.autocapitalizationType = .none
         self.backgroundColor = UIColor(named: "background_color")
     }
+
     func setPadding() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
         self.leftView = paddingView
         self.leftViewMode = .always
-        
     }
     
     func customBottomBorder() {
