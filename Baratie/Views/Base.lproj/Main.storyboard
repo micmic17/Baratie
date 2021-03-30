@@ -38,7 +38,6 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JCH-IK-wsl"/>
                                     <segue destination="rW0-Lr-lVT" kind="show" identifier="RootToRegister" id="90e-U9-4iZ"/>
                                 </connections>
                             </button>
@@ -63,6 +62,7 @@
                         <outlet property="imageView" destination="Pb0-4x-zLU" id="02n-kg-wRJ"/>
                         <outlet property="loginButton" destination="Ky5-Yf-GeF" id="yNr-oD-va8"/>
                         <outlet property="registerButton" destination="szY-ZZ-YMw" id="uuf-yl-uXC"/>
+                        <segue destination="6fT-Q8-Zad" kind="show" identifier="RootToHome" id="fWl-5V-NCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,7 +103,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginPressed:" destination="2lf-of-118" eventType="touchUpInside" id="9PJ-2a-GbJ"/>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcy-lz-uuI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -121,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajp-8D-3B7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376.81159420289856" y="95.758928571428569"/>
+            <point key="canvasLocation" x="377" y="208"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="3zV-Id-klJ">
@@ -130,14 +129,84 @@
                     <view key="view" contentMode="scaleToFill" id="2PI-W3-o36">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eev-IH-Xif">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="f7r-Hr-4P9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eev-IH-Xif" firstAttribute="leading" secondItem="f7r-Hr-4P9" secondAttribute="leading" id="P1I-Kh-xNZ"/>
+                            <constraint firstItem="eev-IH-Xif" firstAttribute="top" secondItem="f7r-Hr-4P9" secondAttribute="top" id="Q1p-8t-IV2"/>
+                            <constraint firstItem="f7r-Hr-4P9" firstAttribute="trailing" secondItem="eev-IH-Xif" secondAttribute="trailing" id="Y08-rw-ZzH"/>
+                            <constraint firstItem="f7r-Hr-4P9" firstAttribute="bottom" secondItem="eev-IH-Xif" secondAttribute="bottom" id="ZGb-2w-Lpe"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ij0-mt-uFg"/>
+                    <navigationItem key="navigationItem" id="Ij0-mt-uFg">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nQd-zN-QFn">
+                            <connections>
+                                <action selector="logoutPressed:" destination="6fT-Q8-Zad" id="iUm-tO-n8s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logoutButton" destination="nQd-zN-QFn" id="Bye-dB-Kgo"/>
+                        <outlet property="menuTableView" destination="eev-IH-Xif" id="hju-Jc-Jxv"/>
+                        <segue destination="DwH-vI-iCS" kind="presentation" identifier="GoToCart" id="Tyn-UI-88k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-jP-bcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="-184"/>
+            <point key="canvasLocation" x="1319" y="-289"/>
+        </scene>
+        <!--Cart View Controller-->
+        <scene sceneID="21Q-LP-xnv">
+            <objects>
+                <viewController id="DwH-vI-iCS" customClass="CartViewController" customModule="Baratie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MWX-L5-rcN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wez-5J-Zxf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="728"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dj7-b4-p8w">
+                                <rect key="frame" x="0.0" y="748" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="cdH-LX-7Uz"/>
+                                </constraints>
+                                <state key="normal" title="Checkout">
+                                    <color key="titleColor" red="0.074509803920000006" green="0.1058823529" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkOutButtonPressed:" destination="DwH-vI-iCS" eventType="touchUpOutside" id="SWP-hV-yrG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mg6-It-o7E"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dj7-b4-p8w" firstAttribute="leading" secondItem="Mg6-It-o7E" secondAttribute="leading" id="81h-gJ-W4K"/>
+                            <constraint firstItem="Mg6-It-o7E" firstAttribute="trailing" secondItem="dj7-b4-p8w" secondAttribute="trailing" id="FtO-uN-yMm"/>
+                            <constraint firstItem="Mg6-It-o7E" firstAttribute="trailing" secondItem="Wez-5J-Zxf" secondAttribute="trailing" id="NZU-fr-rG6"/>
+                            <constraint firstItem="Mg6-It-o7E" firstAttribute="bottom" secondItem="Wez-5J-Zxf" secondAttribute="bottom" constant="80" id="ObS-74-6xr"/>
+                            <constraint firstItem="dj7-b4-p8w" firstAttribute="bottom" secondItem="Mg6-It-o7E" secondAttribute="bottom" id="SAx-69-JWz"/>
+                            <constraint firstItem="Wez-5J-Zxf" firstAttribute="leading" secondItem="Mg6-It-o7E" secondAttribute="leading" id="afV-aB-LiR"/>
+                            <constraint firstItem="Wez-5J-Zxf" firstAttribute="top" secondItem="Mg6-It-o7E" secondAttribute="top" id="cxz-hn-3aK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6qy-oZ-Sgn"/>
+                    <connections>
+                        <outlet property="cartTableView" destination="Wez-5J-Zxf" id="dQT-TE-Ovk"/>
+                        <outlet property="checkButton" destination="dj7-b4-p8w" id="jZG-uh-2va"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lUJ-lp-O4B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2185.507246376812" y="-285.26785714285711"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="073-0C-qkd">
@@ -159,7 +228,6 @@
                                 <connections>
                                     <action selector="loginPressed:" destination="2lf-of-118" eventType="touchUpInside" id="xvY-wh-u6e"/>
                                     <action selector="registerButtonPressed:" destination="rW0-Lr-lVT" eventType="touchUpInside" id="zRU-mp-x8f"/>
-                                    <action selector="rootViewButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xzr-Cl-lut"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-6s-Kng">
@@ -230,11 +298,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBo-cS-4cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378" y="-585"/>
+            <point key="canvasLocation" x="377" y="-727"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DJQ-rq-98A"/>
+        <segue reference="CbW-7P-RT9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
