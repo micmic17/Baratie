@@ -14,10 +14,10 @@ class HomeViewController: UIViewController {
     let cellSpacingHeight: CGFloat = 5
     let backgroundColor = UIColor(named: "background_color")
     let textColor = UIColor(named: "text_color")
-    
-    var menus: [Menu] = []
-
     let btn = BadgedButtonItem(with: UIImage(systemName: "cart"))
+    var menus: [Menu] = []
+    var order: [CartItem] = []
+    var cartItems: Dictionary<CartItem, Int> = [:]
     var counter = 0
 
     override func viewDidLoad() {
@@ -47,11 +47,17 @@ class HomeViewController: UIViewController {
     }
 
     func cartBadge(_ data: Int, _ index: Int) {
-        counter += 1
+//        counter += 1
+//
+//        btn.setBadge(with: counter)
+//        menus[index].quantity -= 1
 
+        let cart = CartItem(id: menus[index].id, name: menus[index].name, image: menus[index].image, price: menus[index].price)
+        self.order.append(cart)
+        cartItems = cart.filterItem(order)
+
+        counter = cartItems.count
         btn.setBadge(with: counter)
-        
-        menus[index].quantity -= 1
         menuTableView.reloadData()
     }
     
@@ -73,7 +79,8 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "GoToCart") {
             let vc = segue.destination as! CartViewController
-            print(vc)
+            vc.cartItems = cartItems
+            vc.cartItemDelegate = self
         }
     }
     
@@ -87,14 +94,13 @@ class HomeViewController: UIViewController {
                 if let snapshotDocs = documentSnapshot?.documents {
                     for doc in snapshotDocs {
                         let data = doc.data()
-                        
                         if let name = data["name"] as? String,
                            let description = data["description"] as? String,
                            let image = data["image"] as? String,
                            let price = data["price"] as? Double,
                            let quantity = data["quantity"] as? Int,
                            let availability = data["availability"] as? Bool {
-                            let menu = Menu(name: name, description: description, price: price, image: image, availability: availability, quantity: quantity)
+                            let menu = Menu(id: doc.documentID, name: name, description: description, price: price, image: image, availability: availability, quantity: quantity)
                             self.menus.append(menu)
                             
                             DispatchQueue.main.async {
@@ -174,5 +180,20 @@ extension HomeViewController: UITableViewDelegate {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
+    }
+}
+
+extension HomeViewController: CartItemDelegate {
+    func updateCartItems(items: [CartItem]) {
+        self.order = []
+        for item in items {
+            let cart = CartItem(id: item.id, name: item.name, image: item.image, price: item.price)
+            self.order.append(cart)
+            cartItems = cart.filterItem(order)
+        }
+
+        counter = items.count
+        btn.setBadge(with: counter)
+        menuTableView.reloadData()
     }
 }

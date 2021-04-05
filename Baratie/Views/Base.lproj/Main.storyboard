@@ -154,7 +154,7 @@
                     <connections>
                         <outlet property="logoutButton" destination="nQd-zN-QFn" id="Bye-dB-Kgo"/>
                         <outlet property="menuTableView" destination="eev-IH-Xif" id="hju-Jc-Jxv"/>
-                        <segue destination="DwH-vI-iCS" kind="presentation" identifier="GoToCart" id="Tyn-UI-88k"/>
+                        <segue destination="DwH-vI-iCS" kind="show" identifier="GoToCart" id="Tyn-UI-88k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-jP-bcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -166,15 +166,19 @@
             <objects>
                 <viewController id="DwH-vI-iCS" customClass="CartViewController" customModule="Baratie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MWX-L5-rcN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wez-5J-Zxf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="728"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DwH-vI-iCS" id="YyB-b8-Bxk"/>
+                                    <outlet property="delegate" destination="DwH-vI-iCS" id="Izi-PL-gGr"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dj7-b4-p8w">
-                                <rect key="frame" x="0.0" y="748" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="cdH-LX-7Uz"/>
                                 </constraints>
@@ -200,11 +204,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="6qy-oZ-Sgn"/>
                     <connections>
-                        <outlet property="cartTableView" destination="Wez-5J-Zxf" id="dQT-TE-Ovk"/>
+                        <outlet property="cartTableView" destination="Wez-5J-Zxf" id="2J7-IK-yEI"/>
                         <outlet property="checkButton" destination="dj7-b4-p8w" id="jZG-uh-2va"/>
+                        <segue destination="hsS-Vn-f9x" kind="unwind" unwindAction="unwindToViewController1WithSegue:" id="11x-8j-bur"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUJ-lp-O4B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hsS-Vn-f9x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2185.507246376812" y="-285.26785714285711"/>
         </scene>
