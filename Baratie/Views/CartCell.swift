@@ -48,6 +48,3 @@ class CartCell: UITableViewCell {
     }
 }
 
-protocol CartCellDelegate {
-    func showAlert(title:String, message:String, tableCell: UITableViewCell);
-}

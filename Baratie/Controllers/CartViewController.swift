@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+import Firebase
 
 class CartViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
@@ -15,24 +17,42 @@ class CartViewController: UIViewController {
     var cartItems: Dictionary<CartItem, Int> = [:]
     var items: [CartItem] = []
     var counter = [Int]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        var cart = CartItem.self
+        print(self.getCustomerCartItems())
+//        for item in cartItems.values {
+//            self.counter.append(item)
+//        }
         
-        for item in cartItems.values {
-            self.counter.append(item)
-        }
-        
-        for item in cartItems.keys {
-            let x = CartItem(id: item.id, name: item.name, image: item.image, price: item.price)
-            self.items.append(x)
-        }
+//        for item in cartItems.keys {
+//            let x = CartItem(id: item.id, name: item.name, image: item.image, price: item.price, quantity: Int)
+//            self.items.append(x)
+//        }
         
         cartTableView.register(UINib(nibName: "CartCell", bundle: nil), forCellReuseIdentifier: "CartCell")
         cartTableView.separatorStyle = .none
     }
     
     @IBAction func checkOutButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    func getCustomerCartItems() -> Array<CustomerCart> {
+        let email = "\(String(describing: Auth.auth().currentUser?.email))"
+        let request: NSFetchRequest<CustomerCart> = CustomerCart.fetchRequest()
+        let predicate = NSPredicate(format: "customer_email CONTAINS %@", email)
+        request.predicate = predicate
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching cart data with \(error)")
+            
+            return []
+        }
     }
 }
 
@@ -43,7 +63,7 @@ extension CartViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartCell
-        cell.itemName.text = items[indexPath.row].name
+//        cell.itemName.text = items[indexPath.row].name
         cell.itemImage.image = UIImage(named: "baratie_logo")
         cell.itemPrice.text = "\(items[indexPath.row].price)"
         cell.itemQuantity.text = "\(counter[indexPath.row])"
@@ -55,7 +75,6 @@ extension CartViewController: UITableViewDataSource {
 
 // interact with menus
 extension CartViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             items.remove(at: indexPath.row)
@@ -81,20 +100,3 @@ extension CartViewController: CartCellDelegate {
     }
 }
 
-struct CartItem: Hashable {
-    var id: String
-    var name: String
-    var image: String
-    var price: Double
-    
-    func filterItem(_ item: Array<CartItem>) -> Dictionary<CartItem, Int> {
-        let mappedItems = item.map { ($0, Int(1)) }
-        let counts = Dictionary(mappedItems, uniquingKeysWith: +)
-        
-        return counts
-    }
-}
-
-protocol CartItemDelegate {
-    func updateCartItems(items: [CartItem]);
-}

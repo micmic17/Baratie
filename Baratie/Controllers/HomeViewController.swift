@@ -34,6 +34,27 @@ class HomeViewController: UIViewController {
         createCart()
         
         loadMenus()
+        
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        DispatchQueue.main.async { [self] in
+            let cartItem = CartItem.getCustomerCartItems()
+
+            if !cartItem.isEmpty {
+                let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
+                    return element.menu_id
+                })
+                
+                for item in dictionary.values {
+                    let cart = CartItem(id: item[0].menu_id!, price: item[0].original_price)
+                    
+                    cartBadge(cart, "firstLoad")
+                }
+                
+//                self.counter = dictionary.count
+//                self.btn.setBadge(with: self.counter)
+            }
+        }
+        
     }
 
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
@@ -46,16 +67,29 @@ class HomeViewController: UIViewController {
 
     }
 
-    func cartBadge(_ data: Int, _ index: Int) {
+    func cartBadge(_ item: CartItem, _ type: String) {
 //        counter += 1
 //
 //        btn.setBadge(with: counter)
 //        menus[index].quantity -= 1
+        var cart = item
+        
+        if type == "tableView" {
+            let cartData = cart.getMenuFromCart(menu_id: cart.id)
 
-        let cart = CartItem(id: menus[index].id, name: menus[index].name, image: menus[index].image, price: menus[index].price)
+            if (cartData.isEmpty) {
+                cart.addToCart()
+            } else {
+                for item in cartData {
+                    item.quantity += 1
+                    print(cart.saveCartData())
+                }
+            }
+        }
+        
+        
         self.order.append(cart)
         cartItems = cart.filterItem(order)
-
         counter = cartItems.count
         btn.setBadge(with: counter)
         menuTableView.reloadData()
@@ -167,7 +201,10 @@ extension HomeViewController: UITableViewDataSource {
 // interact with menus
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if menus[indexPath.row].quantity > 0 { cartBadge(menus[indexPath.row].quantity, indexPath.row) }
+        if menus[indexPath.row].quantity > 0 {
+            let cart = CartItem(id: menus[indexPath.row].id, price: menus[indexPath.row].price)
+            cartBadge(cart, "tableView")
+        }
     }
     
     // Set the spacing between sections
@@ -185,15 +222,15 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: CartItemDelegate {
     func updateCartItems(items: [CartItem]) {
-        self.order = []
-        for item in items {
-            let cart = CartItem(id: item.id, name: item.name, image: item.image, price: item.price)
-            self.order.append(cart)
-            cartItems = cart.filterItem(order)
-        }
-
-        counter = items.count
-        btn.setBadge(with: counter)
-        menuTableView.reloadData()
+//        self.order = []
+//        for item in items {
+//            let cart = Cart(id: item.id, name: item.name, image: item.image, price: item.price)
+//            self.order.append(cart)
+//            cartItems = cart.filterItem(order)
+//        }
+//
+//        counter = items.count
+//        btn.setBadge(with: counter)
+//        menuTableView.reloadData()
     }
 }
