@@ -16,6 +16,7 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var deductQuantity: UIButton!
     var delegate: CartCellDelegate?
     var defaultPrice: Double!
+    var quantity: Int16!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +25,8 @@ class CartCell: UITableViewCell {
     
     override func didMoveToSuperview() {
         defaultPrice = Double(itemPrice.text!)
+        quantity = Int16(itemQuantity.text!)
+        itemPrice.text = "\(Double(quantity!) * defaultPrice!)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,10 +36,7 @@ class CartCell: UITableViewCell {
     }
     
     @IBAction func addDeductQuantityPressed(_ sender: UIButton) {
-        var quantity = Int(itemQuantity.text!)
-        
         if (sender.currentTitle == "+") { quantity! += 1 } else { quantity! -= 1 }
-        
         
         if (quantity! > 0) {
             itemQuantity.text = "\(quantity!)"
