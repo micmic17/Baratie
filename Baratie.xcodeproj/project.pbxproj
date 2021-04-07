@@ -28,6 +28,7 @@
 		2471D83F260D72A100FE2E36 /* BaratieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D83E260D72A100FE2E36 /* BaratieUITests.swift */; };
 		2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D865260D7D4100FE2E36 /* LoginViewController.swift */; };
 		2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */; };
+		24A9A2E9261BF79400AD2BDC /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A2E8261BF79400AD2BDC /* CartItem.swift */; };
 		90D78E2B87621FBBDB05D67A /* Pods_Baratie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0188F7B9BD743AC45227D2 /* Pods_Baratie.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		2471D840260D72A100FE2E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2471D865260D7D4100FE2E36 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		24A9A2E8261BF79400AD2BDC /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		47A729968A6741F51839ED28 /* Pods-Baratie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baratie.release.xcconfig"; path = "Target Support Files/Pods-Baratie/Pods-Baratie.release.xcconfig"; sourceTree = "<group>"; };
 		AC0188F7B9BD743AC45227D2 /* Pods_Baratie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baratie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9225610E033377BAD83AAA4 /* Pods-Baratie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baratie.debug.xcconfig"; path = "Target Support Files/Pods-Baratie/Pods-Baratie.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				2471D822260D729E00FE2E36 /* Baratie.xcdatamodeld */,
 				244EFFA92611E1060035EBF1 /* RegisterCustomer.swift */,
 				244EFFAE2612DA310035EBF1 /* Menu.swift */,
+				24A9A2E8261BF79400AD2BDC /* CartItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				2471D824260D729E00FE2E36 /* Baratie.xcdatamodeld in Sources */,
 				2471D81E260D729E00FE2E36 /* ViewController.swift in Sources */,
 				2471D81A260D729E00FE2E36 /* AppDelegate.swift in Sources */,
+				24A9A2E9261BF79400AD2BDC /* CartItem.swift in Sources */,
 				244EFF5E2611D7780035EBF1 /* BadgedBarButtonItem.swift in Sources */,
 				244EFFBB261311FC0035EBF1 /* CartViewController.swift in Sources */,
 				244EFFAF2612DA310035EBF1 /* Menu.swift in Sources */,

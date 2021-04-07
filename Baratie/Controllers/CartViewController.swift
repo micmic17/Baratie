@@ -6,28 +6,33 @@
 //
 
 import UIKit
+import CoreData
+import Firebase
 
 class CartViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var checkButton: UIButton!
 
     var cartItemDelegate: CartItemDelegate?
-    var cartItems: Dictionary<CartItem, Int> = [:]
     var items: [CartItem] = []
     var counter = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let cartItem = getCustomerCartItems()
         
-        for item in cartItems.values {
-            self.counter.append(item)
+        if !cartItem.isEmpty {
+            let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
+                return element.menu_id
+            })
+
+            for item in dictionary.values {
+                let cart = CartItem(id: item[0].menu_id!, price: item[0].original_price, name: item[0].menu_name!, image: item[0].menu_image!, quantity: item[0].quantity)
+
+                items.append(cart)
+            }
         }
-        
-        for item in cartItems.keys {
-            let x = CartItem(id: item.id, name: item.name, image: item.image, price: item.price)
-            self.items.append(x)
-        }
-        
+
         cartTableView.register(UINib(nibName: "CartCell", bundle: nil), forCellReuseIdentifier: "CartCell")
         cartTableView.separatorStyle = .none
     }
@@ -46,7 +51,7 @@ extension CartViewController: UITableViewDataSource {
         cell.itemName.text = items[indexPath.row].name
         cell.itemImage.image = UIImage(named: "baratie_logo")
         cell.itemPrice.text = "\(items[indexPath.row].price)"
-        cell.itemQuantity.text = "\(counter[indexPath.row])"
+        cell.itemQuantity.text = "\(items[indexPath.row].quantity)"
         cell.delegate = self
 
         return cell
@@ -55,7 +60,6 @@ extension CartViewController: UITableViewDataSource {
 
 // interact with menus
 extension CartViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             items.remove(at: indexPath.row)
@@ -69,9 +73,9 @@ extension CartViewController: CartCellDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler:  { [self]_ in
             if let indexPath = self.cartTableView.indexPath(for: tableCell) {
+                self.cartItemDelegate?.updateCartItems(items: items, deletedItem: [items[indexPath[1]]])
                 items.remove(at: indexPath[1])
                 self.cartTableView.deleteRows(at: [indexPath], with: .fade)
-                self.cartItemDelegate?.updateCartItems(items: items)
             }
         }))
 
@@ -81,20 +85,3 @@ extension CartViewController: CartCellDelegate {
     }
 }
 
-struct CartItem: Hashable {
-    var id: String
-    var name: String
-    var image: String
-    var price: Double
-    
-    func filterItem(_ item: Array<CartItem>) -> Dictionary<CartItem, Int> {
-        let mappedItems = item.map { ($0, Int(1)) }
-        let counts = Dictionary(mappedItems, uniquingKeysWith: +)
-        
-        return counts
-    }
-}
-
-protocol CartItemDelegate {
-    func updateCartItems(items: [CartItem]);
-}

@@ -32,8 +32,23 @@ class HomeViewController: UIViewController {
         
         // Create cart bar button item
         createCart()
-        
         loadMenus()
+
+        let cartItem = getCustomerCartItems()
+
+        if !cartItem.isEmpty {
+            let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
+                return element.menu_id
+            })
+            
+            counter = dictionary.count
+            
+            for item in dictionary.values {
+                let cart = CartItem(id: item[0].menu_id!, price: item[0].original_price, name: item[0].menu_name!, image: item[0].menu_image!, quantity: item[0].quantity)
+                
+                cartBadge(cart, "firstLoad", counter)
+            }
+        }
     }
 
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
@@ -46,19 +61,30 @@ class HomeViewController: UIViewController {
 
     }
 
-    func cartBadge(_ data: Int, _ index: Int) {
-//        counter += 1
-//
-//        btn.setBadge(with: counter)
-//        menus[index].quantity -= 1
+    func cartBadge(_ item: CartItem, _ type: String, _ c: Int) {
+        var cart = item
+        
+        if type == "tableView" {
+            let cartData = cart.getMenuFromCart(menu_id: cart.id)
 
-        let cart = CartItem(id: menus[index].id, name: menus[index].name, image: menus[index].image, price: menus[index].price)
-        self.order.append(cart)
+            if (cartData.isEmpty) {
+                cart.addToCart()
+            } else {
+                for item in cartData {
+                    item.quantity += 1
+                    print(cart.saveCartData())
+                }
+            }
+        }
+
+        order.append(cart)
         cartItems = cart.filterItem(order)
-
-        counter = cartItems.count
+        counter = type == "tableView" ? cartItems.count : c
         btn.setBadge(with: counter)
-        menuTableView.reloadData()
+        print(counter, "cartBadge")
+        if menuTableView != nil {
+            menuTableView.reloadData()
+        }
     }
     
     func createCart() {
@@ -73,13 +99,12 @@ class HomeViewController: UIViewController {
     }
     
     func cartPressed() {
-        self.performSegue(withIdentifier: "GoToCart", sender: self)
+        if counter > 0 { self.performSegue(withIdentifier: "GoToCart", sender: self) }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "GoToCart") {
             let vc = segue.destination as! CartViewController
-            vc.cartItems = cartItems
             vc.cartItemDelegate = self
         }
     }
@@ -167,7 +192,10 @@ extension HomeViewController: UITableViewDataSource {
 // interact with menus
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if menus[indexPath.row].quantity > 0 { cartBadge(menus[indexPath.row].quantity, indexPath.row) }
+        if menus[indexPath.row].quantity > 0 {
+            let cart = CartItem(id: menus[indexPath.row].id, price: menus[indexPath.row].price, name: menus[indexPath.row].name, image: "testimage", quantity: Int16(1))
+            cartBadge(cart, "tableView", 1)
+        }
     }
     
     // Set the spacing between sections
@@ -184,16 +212,14 @@ extension HomeViewController: UITableViewDelegate {
 }
 
 extension HomeViewController: CartItemDelegate {
-    func updateCartItems(items: [CartItem]) {
-        self.order = []
-        for item in items {
-            let cart = CartItem(id: item.id, name: item.name, image: item.image, price: item.price)
-            self.order.append(cart)
-            cartItems = cart.filterItem(order)
+    func updateCartItems(items: [CartItem], deletedItem: [CartItem]) {
+        for delete in deletedItem {
+            if delete.deleteCartItems(delete.id) {
+                for item in items {
+                    let count = items.count - deletedItem.count
+                    cartBadge(item, "CartView", count)
+                }
+            }
         }
-
-        counter = items.count
-        btn.setBadge(with: counter)
-        menuTableView.reloadData()
     }
 }
