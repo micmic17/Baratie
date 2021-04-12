@@ -40,7 +40,7 @@ class RegisterViewController: UIViewController {
            let lastname = lastNameTextField.text,
            let cpassword = confirmPasswordTextField.text {
             print(cpassword)
-            var registerCustomer = RegisterCustomer(firstname: firstname, lastname: lastname, email: email, address: addressTextField.text!, password: password, currentDate: getCurrentDateTime())
+            var registerCustomer = Customer(firstname: firstname, lastname: lastname, email: email, address: addressTextField.text!, password: password, currentDate: getCurrentDateTime())
             
             if (registerCustomer.register()) {
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, error in

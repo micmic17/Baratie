@@ -1,25 +1,26 @@
 //
-//  RegisterCustomer.swift
+//  Customer.swift
 //  Baratie
 //
-//  Created by Mickale Saturre on 3/29/21.
+//  Created by Mickale Saturre on 4/8/21.
 //
 import UIKit
 import CoreData
+import Firebase
 
-struct RegisterCustomer {
+struct Customer {
     let firstname: String
     let lastname: String
     let email: String
     let address: String
     let password: String
     let currentDate: String
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     var customerData = [Customers]()
+    static var request: NSFetchRequest<Customers> = Customers.fetchRequest()
+    static var email = Auth.auth().currentUser?.email!
     
     mutating func register() -> Bool {
-        let customer = Customers(context: self.context)
+        let customer = Customers(context: context)
         customer.firstname = firstname
         customer.lastname = lastname
         customer.password = password
@@ -40,6 +41,18 @@ struct RegisterCustomer {
             print("Error saving customer data with \(error)")
             
             return false
+        }
+    }
+    
+    static func getCustoomerData() -> Array<Customers> {
+        request.predicate = NSPredicate.init(format: "email CONTAINS %@", loginEamil!)
+
+        do {
+            return try context.fetch(Customer.request)
+        } catch {
+            print("Error fetching cart data with \(error)")
+    
+            return []
         }
     }
 }

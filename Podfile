@@ -7,6 +7,8 @@ target 'Baratie' do
   pod 'CLTypingLabel', '~> 0.4.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Braintree'
+#  pod 'BraintreeDropIn'
 end
 
 post_install do |installer|

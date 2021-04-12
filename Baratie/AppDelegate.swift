@@ -8,17 +8,35 @@
 import UIKit
 import CoreData
 import Firebase
+import Braintree
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-
+        BTAppContextSwitcher.setReturnURLScheme("com.mickale.Baratie.payments")
+        
         return true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         self.saveContext()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        URLContexts.forEach { context in
+            if context.url.scheme?.localizedCaseInsensitiveCompare("com.mickale.Baratie.payments") == .orderedSame {
+                BTAppContextSwitcher.handleOpenURLContext(context)
+            }
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("com.mickale.Baratie.payments") == .orderedSame {
+            return BTAppContextSwitcher.handleOpenURL(url)
+        }
+
+        return false
     }
 
     // MARK: - Core Data stack
@@ -49,3 +67,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+/**/

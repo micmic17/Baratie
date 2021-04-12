@@ -10,7 +10,6 @@
 		244EFF0E26119D190035EBF1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFF0D26119D190035EBF1 /* HomeViewController.swift */; };
 		244EFF2B2611A6B40035EBF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 244EFF2A2611A6B40035EBF1 /* GoogleService-Info.plist */; };
 		244EFF5E2611D7780035EBF1 /* BadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFF5D2611D7780035EBF1 /* BadgedBarButtonItem.swift */; };
-		244EFFAA2611E1060035EBF1 /* RegisterCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFFA92611E1060035EBF1 /* RegisterCustomer.swift */; };
 		244EFFAF2612DA310035EBF1 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFFAE2612DA310035EBF1 /* Menu.swift */; };
 		244EFFB52612DCCA0035EBF1 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EFFB32612DCCA0035EBF1 /* MenuCell.swift */; };
 		244EFFB62612DCCA0035EBF1 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 244EFFB42612DCCA0035EBF1 /* MenuCell.xib */; };
@@ -29,6 +28,10 @@
 		2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D865260D7D4100FE2E36 /* LoginViewController.swift */; };
 		2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */; };
 		24A9A2E9261BF79400AD2BDC /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A2E8261BF79400AD2BDC /* CartItem.swift */; };
+		24AE4A34261DA77A002D9B11 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE4A33261DA77A002D9B11 /* CheckoutViewController.swift */; };
+		24AE4A42261DB6EA002D9B11 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE4A40261DB6EA002D9B11 /* CheckoutCell.swift */; };
+		24AE4A43261DB6EA002D9B11 /* CheckoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AE4A41261DB6EA002D9B11 /* CheckoutCell.xib */; };
+		24EE1558261EA0B1009B1EFC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EE1557261EA0B1009B1EFC /* Customer.swift */; };
 		90D78E2B87621FBBDB05D67A /* Pods_Baratie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0188F7B9BD743AC45227D2 /* Pods_Baratie.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +56,6 @@
 		244EFF0D26119D190035EBF1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		244EFF2A2611A6B40035EBF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		244EFF5D2611D7780035EBF1 /* BadgedBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgedBarButtonItem.swift; sourceTree = "<group>"; };
-		244EFFA92611E1060035EBF1 /* RegisterCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomer.swift; sourceTree = "<group>"; };
 		244EFFAE2612DA310035EBF1 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		244EFFB32612DCCA0035EBF1 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		244EFFB42612DCCA0035EBF1 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
@@ -78,6 +80,10 @@
 		2471D865260D7D4100FE2E36 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		24A9A2E8261BF79400AD2BDC /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		24AE4A33261DA77A002D9B11 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		24AE4A40261DB6EA002D9B11 /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
+		24AE4A41261DB6EA002D9B11 /* CheckoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutCell.xib; sourceTree = "<group>"; };
+		24EE1557261EA0B1009B1EFC /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		47A729968A6741F51839ED28 /* Pods-Baratie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baratie.release.xcconfig"; path = "Target Support Files/Pods-Baratie/Pods-Baratie.release.xcconfig"; sourceTree = "<group>"; };
 		AC0188F7B9BD743AC45227D2 /* Pods_Baratie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baratie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9225610E033377BAD83AAA4 /* Pods-Baratie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baratie.debug.xcconfig"; path = "Target Support Files/Pods-Baratie/Pods-Baratie.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				244EFFB42612DCCA0035EBF1 /* MenuCell.xib */,
 				244EFFC02613147D0035EBF1 /* CartCell.swift */,
 				244EFFC12613147D0035EBF1 /* CartCell.xib */,
+				24AE4A40261DB6EA002D9B11 /* CheckoutCell.swift */,
+				24AE4A41261DB6EA002D9B11 /* CheckoutCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,9 +190,9 @@
 			isa = PBXGroup;
 			children = (
 				2471D822260D729E00FE2E36 /* Baratie.xcdatamodeld */,
-				244EFFA92611E1060035EBF1 /* RegisterCustomer.swift */,
 				244EFFAE2612DA310035EBF1 /* Menu.swift */,
 				24A9A2E8261BF79400AD2BDC /* CartItem.swift */,
+				24EE1557261EA0B1009B1EFC /* Customer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 				2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */,
 				244EFF0D26119D190035EBF1 /* HomeViewController.swift */,
 				244EFFBA261311FC0035EBF1 /* CartViewController.swift */,
+				24AE4A33261DA77A002D9B11 /* CheckoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -324,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2471D829260D72A100FE2E36 /* LaunchScreen.storyboard in Resources */,
+				24AE4A43261DB6EA002D9B11 /* CheckoutCell.xib in Resources */,
 				244EFF2B2611A6B40035EBF1 /* GoogleService-Info.plist in Resources */,
 				244EFFB62612DCCA0035EBF1 /* MenuCell.xib in Resources */,
 				244EFFC32613147D0035EBF1 /* CartCell.xib in Resources */,
@@ -398,6 +408,7 @@
 				2471D824260D729E00FE2E36 /* Baratie.xcdatamodeld in Sources */,
 				2471D81E260D729E00FE2E36 /* ViewController.swift in Sources */,
 				2471D81A260D729E00FE2E36 /* AppDelegate.swift in Sources */,
+				24AE4A42261DB6EA002D9B11 /* CheckoutCell.swift in Sources */,
 				24A9A2E9261BF79400AD2BDC /* CartItem.swift in Sources */,
 				244EFF5E2611D7780035EBF1 /* BadgedBarButtonItem.swift in Sources */,
 				244EFFBB261311FC0035EBF1 /* CartViewController.swift in Sources */,
@@ -405,9 +416,10 @@
 				244EFFC22613147D0035EBF1 /* CartCell.swift in Sources */,
 				244EFFB52612DCCA0035EBF1 /* MenuCell.swift in Sources */,
 				2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */,
+				24EE1558261EA0B1009B1EFC /* Customer.swift in Sources */,
 				2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */,
 				244EFF0E26119D190035EBF1 /* HomeViewController.swift in Sources */,
-				244EFFAA2611E1060035EBF1 /* RegisterCustomer.swift in Sources */,
+				24AE4A34261DA77A002D9B11 /* CheckoutViewController.swift in Sources */,
 				2471D81C260D729E00FE2E36 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
