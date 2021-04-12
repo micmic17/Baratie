@@ -1,6 +1,4 @@
 # Baratie
-
-## Description
 - An app that allows user to order food from Baratie Restaurant
 
 ## Notes
