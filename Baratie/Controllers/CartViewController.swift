@@ -19,8 +19,8 @@ class CartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cartItem = getCustomerCartItems()
-        
+        let cartItem = CartItem.getCustomerCartItems()
+  
         if !cartItem.isEmpty {
             let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
                 return element.menu_id
@@ -38,6 +38,14 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func checkOutButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "CartToCheckout", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "CartToCheckout") {
+            let vc = segue.destination as! CheckoutViewController
+            vc.cartItems = items
+        }
     }
 }
 
@@ -48,6 +56,7 @@ extension CartViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartCell
+        cell.itemImage.accessibilityLabel = items[indexPath.row].id
         cell.itemName.text = items[indexPath.row].name
         cell.itemImage.image = UIImage(named: "baratie_logo")
         cell.itemPrice.text = "\(items[indexPath.row].price)"
@@ -84,4 +93,3 @@ extension CartViewController: CartCellDelegate {
         self.present(alert, animated: true, completion: nil)
     }
 }
-

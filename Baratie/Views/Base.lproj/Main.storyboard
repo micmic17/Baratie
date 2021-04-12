@@ -187,6 +187,7 @@
                                 </state>
                                 <connections>
                                     <action selector="checkOutButtonPressed:" destination="DwH-vI-iCS" eventType="touchUpOutside" id="SWP-hV-yrG"/>
+                                    <segue destination="nKU-9I-5Nh" kind="show" identifier="CartToCheckout" id="fQu-WA-SbK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -213,6 +214,120 @@
                 <exit id="hsS-Vn-f9x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2185.507246376812" y="-285.26785714285711"/>
+        </scene>
+        <!--Checkout View Controller-->
+        <scene sceneID="zls-c9-MLq">
+            <objects>
+                <viewController id="nKU-9I-5Nh" customClass="CheckoutViewController" customModule="Baratie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Loj-6h-1yg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1a-6v-JoD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uDI-i3-7vW">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H12-XL-ixQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="419"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="nKU-9I-5Nh" id="xsX-yN-fwn"/>
+                                                    <outlet property="delegate" destination="nKU-9I-5Nh" id="cHr-hQ-8fn"/>
+                                                </connections>
+                                            </tableView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bee-33-zPJ">
+                                                <rect key="frame" x="0.0" y="419" width="414" height="275"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Full Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="do3-RR-myR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nCY-nj-SEZ">
+                                                        <rect key="frame" x="0.0" y="75" width="414" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="0JG-Nf-Rbw"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Card Number" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-gV-OKk">
+                                                        <rect key="frame" x="0.0" y="145" width="414" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="y1E-xv-R8B"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="cc-number"/>
+                                                    </textField>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Y7M-Dn-vYK">
+                                                        <rect key="frame" x="0.0" y="215" width="414" height="60"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1n-U1-ufo">
+                                                                <rect key="frame" x="0.0" y="0.0" width="197" height="60"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CVC" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ze-ou-poU">
+                                                                <rect key="frame" x="217" y="0.0" width="197" height="60"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="ip2-c0-gNH"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="275" id="Dji-a2-XuT"/>
+                                                </constraints>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqI-Ar-Vxf">
+                                                <rect key="frame" x="0.0" y="694" width="414" height="80"/>
+                                                <state key="normal" title="PAY NOW"/>
+                                                <connections>
+                                                    <action selector="payCheckoutPressed:" destination="nKU-9I-5Nh" eventType="touchUpInside" id="3Yv-QW-Mnv"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="H12-XL-ixQ" firstAttribute="top" secondItem="uDI-i3-7vW" secondAttribute="top" id="ZEt-7j-iWU"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uDI-i3-7vW" secondAttribute="bottom" id="0zX-Pb-nl1"/>
+                                    <constraint firstItem="uDI-i3-7vW" firstAttribute="leading" secondItem="p1a-6v-JoD" secondAttribute="leading" id="22X-qu-8n4"/>
+                                    <constraint firstAttribute="trailing" secondItem="uDI-i3-7vW" secondAttribute="trailing" id="Fv3-XH-caN"/>
+                                    <constraint firstItem="uDI-i3-7vW" firstAttribute="top" secondItem="p1a-6v-JoD" secondAttribute="top" id="cas-Gr-sPn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MIW-2i-u8r"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="p1a-6v-JoD" firstAttribute="top" secondItem="MIW-2i-u8r" secondAttribute="top" id="0We-ca-9I9"/>
+                            <constraint firstItem="MIW-2i-u8r" firstAttribute="trailing" secondItem="p1a-6v-JoD" secondAttribute="trailing" id="CV5-x2-eaB"/>
+                            <constraint firstItem="p1a-6v-JoD" firstAttribute="leading" secondItem="MIW-2i-u8r" secondAttribute="leading" id="MDl-k4-hQK"/>
+                            <constraint firstItem="MIW-2i-u8r" firstAttribute="bottom" secondItem="p1a-6v-JoD" secondAttribute="bottom" id="ljF-nv-dIG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ekD-xW-rRh"/>
+                    <connections>
+                        <outlet property="addressTextField" destination="nCY-nj-SEZ" id="gkF-cN-wIC"/>
+                        <outlet property="cardTextField" destination="CYI-gV-OKk" id="vxy-Vq-S3T"/>
+                        <outlet property="cvcTextField" destination="6ze-ou-poU" id="xBv-DG-x59"/>
+                        <outlet property="expDateTextField" destination="i1n-U1-ufo" id="4dk-eU-axk"/>
+                        <outlet property="itemTableView" destination="H12-XL-ixQ" id="BMh-yU-XdD"/>
+                        <outlet property="nameTextField" destination="do3-RR-myR" id="11U-kl-jao"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mzf-Jv-0Kf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3075.36231884058" y="-285.26785714285711"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="073-0C-qkd">
@@ -308,7 +423,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DJQ-rq-98A"/>
+        <segue reference="CbW-7P-RT9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

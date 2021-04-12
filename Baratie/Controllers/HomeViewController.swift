@@ -34,7 +34,8 @@ class HomeViewController: UIViewController {
         createCart()
         loadMenus()
 
-        let cartItem = getCustomerCartItems()
+        let cartItem = CartItem.getCustomerCartItems()
+        print(cartItem)
 
         if !cartItem.isEmpty {
             let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
@@ -72,7 +73,7 @@ class HomeViewController: UIViewController {
             } else {
                 for item in cartData {
                     item.quantity += 1
-                    print(cart.saveCartData())
+                    _ = CartItem.saveCartData()
                 }
             }
         }
@@ -81,10 +82,7 @@ class HomeViewController: UIViewController {
         cartItems = cart.filterItem(order)
         counter = type == "tableView" ? cartItems.count : c
         btn.setBadge(with: counter)
-        print(counter, "cartBadge")
-        if menuTableView != nil {
-            menuTableView.reloadData()
-        }
+        menuTableView.reloadData()
     }
     
     func createCart() {

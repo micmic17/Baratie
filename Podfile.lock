@@ -218,6 +218,18 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - Braintree (5.3.0):
+    - Braintree/Card (= 5.3.0)
+    - Braintree/Core (= 5.3.0)
+    - Braintree/PayPal (= 5.3.0)
+  - Braintree/Card (5.3.0):
+    - Braintree/Core
+  - Braintree/Core (5.3.0)
+  - Braintree/PayPal (5.3.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.3.0):
+    - Braintree/Core
   - CLTypingLabel (0.4.0)
   - Firebase/Auth (7.8.1):
     - Firebase/CoreOnly
@@ -306,6 +318,7 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
+  - Braintree
   - CLTypingLabel (~> 0.4.0)
   - Firebase/Auth
   - Firebase/Firestore
@@ -314,6 +327,7 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - Braintree
     - CLTypingLabel
     - Firebase
     - FirebaseAuth
@@ -332,6 +346,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  Braintree: 0345adbe9b0401c9a0546787dc4ba450f9e5dd2d
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
   Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
   FirebaseAuth: 667e576a716f6f9fe31687791406f61135002d47
@@ -347,6 +362,6 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: c8be6dfc47b2b47054bfa4b5482debbf9f2cc49a
+PODFILE CHECKSUM: 7256508e4fc5803e068836298751ada365ce8d59
 
 COCOAPODS: 1.10.1
