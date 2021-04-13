@@ -3,6 +3,7 @@
 
 ## Notes
 - Most pages are just wireframe designs
+- Only landscape is supported
 
 ## PayPal Sandbox Test Account
   - Account 1
@@ -17,3 +18,6 @@
 - Register/Login users
 - Stores static menu data
 - Stores orders of the users
+
+## Available Test Devices
+- Iphone 11 onwards
