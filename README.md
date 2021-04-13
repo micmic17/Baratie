@@ -12,3 +12,8 @@
   - Account 2
       - Email: sb-1urf35895526@personal.example.com
       - Password: ``we)r-gN1``
+
+## Firebase/Firestore
+- Register/Login users
+- Stores static menu data
+- Stores orders of the users
