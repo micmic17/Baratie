@@ -17,9 +17,22 @@ class HomeViewController: UIViewController {
     let btn = BadgedButtonItem(with: UIImage(systemName: "cart"))
     var menus: [Menu] = []
     var order: [CartItem] = []
-    var cartItems: Dictionary<CartItem, Int> = [:]
     var counter = 0
 
+    override func viewWillAppear(_ animated: Bool) {
+        menuTableView.reloadData()
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: CheckoutViewController.self) {
+                DispatchQueue.main.async {
+                    self.btn.setBadge(with: 0)
+                    self.counter = 0
+                }
+
+                break
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menuTableView.dataSource = self
@@ -33,21 +46,20 @@ class HomeViewController: UIViewController {
         // Create cart bar button item
         createCart()
         loadMenus()
-
+        
         let cartItem = CartItem.getCustomerCartItems()
-        print(cartItem)
 
         if !cartItem.isEmpty {
             let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
                 return element.menu_id
             })
-            
+
             counter = dictionary.count
-            
+
             for item in dictionary.values {
                 let cart = CartItem(id: item[0].menu_id!, price: item[0].original_price, name: item[0].menu_name!, image: item[0].menu_image!, quantity: item[0].quantity)
-                
-                cartBadge(cart, "firstLoad", counter)
+
+                cartBadge(cart, "firstLoad")
             }
         }
     }
@@ -62,9 +74,9 @@ class HomeViewController: UIViewController {
 
     }
 
-    func cartBadge(_ item: CartItem, _ type: String, _ c: Int) {
+    func cartBadge(_ item: CartItem, _ type: String) {
         var cart = item
-        
+
         if type == "tableView" {
             let cartData = cart.getMenuFromCart(menu_id: cart.id)
 
@@ -73,14 +85,22 @@ class HomeViewController: UIViewController {
             } else {
                 for item in cartData {
                     item.quantity += 1
-                    _ = CartItem.saveCartData()
+                    _ = saveCartData()
                 }
             }
         }
+        
+        let cartItem = CartItem.getCustomerCartItems()
+
+        if !cartItem.isEmpty {
+            let dictionary = Dictionary(grouping: cartItem, by: { (element: CustomerCart) in
+                return element.menu_id
+            })
+            
+            counter = dictionary.count
+        }
 
         order.append(cart)
-        cartItems = cart.filterItem(order)
-        counter = type == "tableView" ? cartItems.count : c
         btn.setBadge(with: counter)
         menuTableView.reloadData()
     }
@@ -108,9 +128,8 @@ class HomeViewController: UIViewController {
     }
     
     func loadMenus() {
-        let db = Firestore.firestore()
-
-        db.collection("menus").addSnapshotListener { documentSnapshot, error in
+        db.collection("menus")
+        .addSnapshotListener { documentSnapshot, error in
             if let e = error {
                 print("There's some error \(e)")
             } else {
@@ -121,11 +140,10 @@ class HomeViewController: UIViewController {
                            let description = data["description"] as? String,
                            let image = data["image"] as? String,
                            let price = data["price"] as? Double,
-                           let quantity = data["quantity"] as? Int,
-                           let availability = data["availability"] as? Bool {
-                            let menu = Menu(id: doc.documentID, name: name, description: description, price: price, image: image, availability: availability, quantity: quantity)
+                           let quantity = data["quantity"] as? Int {
+                            let menu = Menu(id: doc.documentID, name: name, description: description, price: price, image: image, quantity: quantity)
                             self.menus.append(menu)
-                            
+
                             DispatchQueue.main.async {
                                 self.menuTableView.reloadData()
                                 let indexPath = IndexPath(row: self.menus.count - 1, section: 0)
@@ -192,7 +210,8 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if menus[indexPath.row].quantity > 0 {
             let cart = CartItem(id: menus[indexPath.row].id, price: menus[indexPath.row].price, name: menus[indexPath.row].name, image: "testimage", quantity: Int16(1))
-            cartBadge(cart, "tableView", 1)
+            
+            cartBadge(cart, "tableView")
         }
     }
     
@@ -214,8 +233,8 @@ extension HomeViewController: CartItemDelegate {
         for delete in deletedItem {
             if delete.deleteCartItems(delete.id) {
                 for item in items {
-                    let count = items.count - deletedItem.count
-                    cartBadge(item, "CartView", count)
+                    counter = items.count - deletedItem.count
+                    cartBadge(item, "CartView")
                 }
             }
         }

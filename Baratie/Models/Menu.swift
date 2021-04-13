@@ -13,6 +13,5 @@ struct Menu {
     let description: String
     let price: Double
     let image: String
-    let availability: Bool
     var quantity: Int
 }

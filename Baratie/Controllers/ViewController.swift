@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         if !isUserLoggedIn() {
             customView(imageView, "")
             customButton(loginButton)
