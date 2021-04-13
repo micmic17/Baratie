@@ -35,6 +35,7 @@ class CartViewController: UIViewController {
 
         cartTableView.register(UINib(nibName: "CartCell", bundle: nil), forCellReuseIdentifier: "CartCell")
         cartTableView.separatorStyle = .none
+        customButton(checkButton)
     }
     
     @IBAction func checkOutButtonPressed(_ sender: UIBarButtonItem) {
@@ -71,6 +72,7 @@ extension CartViewController: UITableViewDataSource {
 extension CartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            self.cartItemDelegate?.updateCartItems(items: items, deletedItem: [items[indexPath.row]])
             items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

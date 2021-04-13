@@ -230,7 +230,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H12-XL-ixQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="419"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="439"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <connections>
                                                     <outlet property="dataSource" destination="nKU-9I-5Nh" id="xsX-yN-fwn"/>
@@ -238,7 +238,7 @@
                                                 </connections>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bee-33-zPJ">
-                                                <rect key="frame" x="0.0" y="419" width="414" height="275"/>
+                                                <rect key="frame" x="0.0" y="439" width="414" height="275"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Full Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="do3-RR-myR">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -284,11 +284,16 @@
                                                     <constraint firstAttribute="height" constant="275" id="Dji-a2-XuT"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqI-Ar-Vxf">
-                                                <rect key="frame" x="0.0" y="694" width="414" height="80"/>
-                                                <state key="normal" title="PAY NOW"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIO-uX-I2t">
+                                                <rect key="frame" x="0.0" y="714" width="414" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="eIQ-lf-wQE"/>
+                                                </constraints>
+                                                <state key="normal" title="PAY NOW">
+                                                    <color key="titleColor" red="0.074509803920000006" green="0.1058823529" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="payCheckoutPressed:" destination="nKU-9I-5Nh" eventType="touchUpInside" id="3Yv-QW-Mnv"/>
+                                                    <action selector="checkOutButtonPressed:" destination="DwH-vI-iCS" eventType="touchUpOutside" id="Jhg-Wf-gdw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -323,6 +328,7 @@
                         <outlet property="expDateTextField" destination="i1n-U1-ufo" id="4dk-eU-axk"/>
                         <outlet property="itemTableView" destination="H12-XL-ixQ" id="BMh-yU-XdD"/>
                         <outlet property="nameTextField" destination="do3-RR-myR" id="11U-kl-jao"/>
+                        <outlet property="payNowButton" destination="wIO-uX-I2t" id="faC-48-tpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzf-Jv-0Kf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -423,7 +429,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CbW-7P-RT9"/>
+        <segue reference="fWl-5V-NCe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

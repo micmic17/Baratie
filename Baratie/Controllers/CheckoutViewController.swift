@@ -7,6 +7,7 @@
 
 import UIKit
 import Braintree
+import Firebase
 
 class CheckoutViewController: UIViewController {
     @IBOutlet weak var itemTableView: UITableView!
@@ -15,6 +16,7 @@ class CheckoutViewController: UIViewController {
     @IBOutlet weak var cardTextField: UITextField!
     @IBOutlet weak var cvcTextField: UITextField!
     @IBOutlet weak var expDateTextField: UITextField!
+    @IBOutlet weak var payNowButton: UIButton!
 
     private var previousTextFieldContent: String?
     private var previousSelection: UITextRange?
@@ -36,9 +38,12 @@ class CheckoutViewController: UIViewController {
         cvcTextField.placeholder = "CVC"
         cardTextField.delegate = self
         
-//        locationManger.delegate = self
-//        locationManger.requestWhenInUseAuthorization()
-//        locationManger.requestLocation()
+        // Temporarily remove credit/debit card text fields
+        nameTextField.removeFromSuperview()
+        addressTextField.removeFromSuperview()
+        cardTextField.removeFromSuperview()
+        cvcTextField.removeFromSuperview()
+        expDateTextField.removeFromSuperview()
         
         let customer = Customer.getCustoomerData()
 
@@ -52,19 +57,20 @@ class CheckoutViewController: UIViewController {
         expDateTextField.delegate = self
         datePicker.dataSource = datePicker
         datePicker.delegate = datePicker
+        
+        customButton(payNowButton)
     }
     
     @IBAction func payCheckoutPressed(_ sender: UIButton) {
-        startCheckout("\(totalPrice)")
+        startCheckout()
     }
 
-    func startCheckout(_ totalAmount: String) {
+    func startCheckout() {
         braintreeClient = BTAPIClient(authorization: "sandbox_rzvv9hvn_k6gtx85ddd8n3b3v")!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
-        let request = BTPayPalCheckoutRequest(amount: totalAmount)
+        let request = BTPayPalCheckoutRequest(amount: "\(totalPrice)")
         request.currencyCode = "USD"
-//        request.
-
+    
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                 print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
@@ -74,14 +80,44 @@ class CheckoutViewController: UIViewController {
                 let firstName = tokenizedPayPalAccount.firstName
                 
                 print(email!, firstName!)
+                
+                CustomerOrder().createOrder(self.cartItems, self.totalPrice, true)
+                self.updateFirestore()
+                DispatchQueue.main.async {
+                    for controller in self.navigationController!.viewControllers as Array {
+                        if controller.isKind(of: HomeViewController.self) {
+                            self.navigationController!.popToViewController(controller, animated: true)
+                            break
+                        }
+                    }
+                }
             } else if let error = error {
                 print(error)
             } else {
-                // Buyer canceled payment approval
+                // cancel payment
             }
         }
     }
     
+    func updateFirestore() {
+        for item in cartItems {
+            let ref = db.collection("menus").document(item.id)
+            ref.getDocument { documentSnapshot, error in
+                if let e = error {
+                    print(e)
+                } else {
+                    if let doc = documentSnapshot?.data() {
+                        let doc = doc["quantity"] as! Int16
+
+                        documentSnapshot?.reference.updateData([
+                            "quantity": doc - item.quantity
+                        ])
+                    }
+                }
+            }
+        }
+    }
+
     @objc private func editingChanged(sender: UITextField) {
         let maxLength = sender.placeholder! == "CVC" ? 3 : 16
         
@@ -143,8 +179,7 @@ class CheckoutViewController: UIViewController {
             let characterToAdd = string[string.index(string.startIndex, offsetBy: i)]
             if characterToAdd >= "0" && characterToAdd <= "9" {
                 digitsOnlyString.append(characterToAdd)
-            }
-            else if i < originalCursorPosition {
+            } else if i < originalCursorPosition {
                 cursorPosition -= 1
             }
         }
@@ -163,6 +198,7 @@ class CheckoutViewController: UIViewController {
                     cursorPosition += 1
                 }
             }
+
             let characterToAdd = string[string.index(string.startIndex, offsetBy: i)]
             stringWithAddedSpaces.append(characterToAdd)
         }
@@ -236,7 +272,7 @@ extension CheckoutViewController: UITextFieldDelegate{
     }
 }
 
-class DatePicker : UIPickerView{
+class DatePicker : UIPickerView {
     var dateCollection = [Date]()
     
     func selectedDate()->Int{

@@ -27,6 +27,7 @@
 		2471D83F260D72A100FE2E36 /* BaratieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D83E260D72A100FE2E36 /* BaratieUITests.swift */; };
 		2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D865260D7D4100FE2E36 /* LoginViewController.swift */; };
 		2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */; };
+		249F20B726242008004769A5 /* CustomerOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F20B626242008004769A5 /* CustomerOrder.swift */; };
 		24A9A2E9261BF79400AD2BDC /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9A2E8261BF79400AD2BDC /* CartItem.swift */; };
 		24AE4A34261DA77A002D9B11 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE4A33261DA77A002D9B11 /* CheckoutViewController.swift */; };
 		24AE4A42261DB6EA002D9B11 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE4A40261DB6EA002D9B11 /* CheckoutCell.swift */; };
@@ -79,6 +80,7 @@
 		2471D840260D72A100FE2E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2471D865260D7D4100FE2E36 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2471D86A260D7D5000FE2E36 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		249F20B626242008004769A5 /* CustomerOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrder.swift; sourceTree = "<group>"; };
 		24A9A2E8261BF79400AD2BDC /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		24AE4A33261DA77A002D9B11 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		24AE4A40261DB6EA002D9B11 /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				244EFFAE2612DA310035EBF1 /* Menu.swift */,
 				24A9A2E8261BF79400AD2BDC /* CartItem.swift */,
 				24EE1557261EA0B1009B1EFC /* Customer.swift */,
+				249F20B626242008004769A5 /* CustomerOrder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				244EFFB52612DCCA0035EBF1 /* MenuCell.swift in Sources */,
 				2471D86B260D7D5000FE2E36 /* RegisterViewController.swift in Sources */,
 				24EE1558261EA0B1009B1EFC /* Customer.swift in Sources */,
+				249F20B726242008004769A5 /* CustomerOrder.swift in Sources */,
 				2471D866260D7D4100FE2E36 /* LoginViewController.swift in Sources */,
 				244EFF0E26119D190035EBF1 /* HomeViewController.swift in Sources */,
 				24AE4A34261DA77A002D9B11 /* CheckoutViewController.swift in Sources */,

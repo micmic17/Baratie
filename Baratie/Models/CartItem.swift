@@ -12,6 +12,8 @@ import Firebase
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 let loginEamil = Auth.auth().currentUser?.email!
+let db = Firestore.firestore()
+
 
 struct CartItem: Hashable {
     var id: String
@@ -31,24 +33,17 @@ struct CartItem: Hashable {
         cart.original_price = price
         cart.quantity = 1
         cartData.append(cart)
-        _ = CartItem.saveCartData()
+        _ = saveCartData()
     }
     
     func getMenuFromCart(menu_id: String) -> Array<CustomerCart> {
-        CartItem.request.predicate = NSPredicate.init(format: "customer_email = %@ AND menu_id = %@", loginEamil!, menu_id)
+        CartItem.request.predicate = NSPredicate.init(format: "customer_email = %@ AND menu_id = %@ AND order_id == nil", loginEamil!, menu_id)
 
         return CartItem.fetchCustomerCart()
     }
 
     func deleteCartItems(_ menu_id: String) -> Bool {
         return CartItem.changeItemQuantity(menu_id, 0)
-    }
-    
-    func filterItem(_ item: Array<CartItem>) -> Dictionary<CartItem, Int> {
-        let mappedItems = item.map { ($0, Int(1)) }
-        let counts = Dictionary(mappedItems, uniquingKeysWith: +)
-        
-        return counts
     }
 
     static func changeItemQuantity(_ menu_id: String, _ quantity: Int16) -> Bool {
@@ -59,23 +54,11 @@ struct CartItem: Hashable {
             object.quantity = quantity
         }
         
-        return CartItem.saveCartData()
+        return saveCartData()
     }
 
-    static func saveCartData() -> Bool {
-        do {
-            try context.save()
-            
-            return true
-        } catch {
-            print("Error saving cart data with \(error)")
-            
-            return false
-        }
-    }
-    
     static func getCustomerCartItems() -> Array<CustomerCart> {
-        let predicate = NSPredicate(format: "customer_email CONTAINS %@ AND  quantity > 0", loginEamil!)
+        let predicate = NSPredicate(format: "customer_email CONTAINS %@ AND order_id == nil AND quantity > 0", loginEamil!)
         request.predicate = predicate
         
         return CartItem.fetchCustomerCart()
@@ -110,4 +93,16 @@ protocol CartItemDelegate {
 
 protocol CartCellDelegate {
     func showAlert(title:String, message:String, tableCell: UITableViewCell);
+}
+
+func saveCartData() -> Bool {
+    do {
+        try context.save()
+        
+        return true
+    } catch {
+        print("Error saving cart data with \(error)")
+        
+        return false
+    }
 }
